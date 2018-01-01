@@ -1,8 +1,21 @@
-import Botkit from 'botkit';
+const Botkit = require('botkit');
+
+const token = process.env.SLACK_TOKEN
 
 const controller = Botkit.slackbot({
-  debug: true,
+  debug: false
 });
+
+if (token) {
+  console.log("Starting in single-team mode")
+  controller.spawn({
+    token: token
+  }).startRTM(function(err,bot,payload) {
+    if (err) {
+      throw new Error(err);
+    }
+  });
+}
 
 const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
 
@@ -56,7 +69,7 @@ const prefixes = [
   `To be clear...`,
 ];
 
-const addPrefix = reply => `${getRandomReply(prefixes), ${decapitalize(reply)}}`;
+const addPrefix = reply => `${getRandomReply(prefixes)}, ${decapitalize(reply)}`;
 
 const makeReply = (reply) => {
   const needsPrefix = determineIfPrefix();
@@ -155,7 +168,7 @@ controller.on('mention', function(bot, message) {
   const reply = getRandomReply(mentionReplies);
 
   const mentionUser = Math.random() < 2;
-  if (mentionUser) return bot.reply(message, `${withUser(user), ${decapitalize(reply)}}`);
+  if (mentionUser) return bot.reply(message, `${withUser(user)}, ${decapitalize(reply)}`);
   return bot.reply(message, makeReply(reply));
 });
 
