@@ -80,8 +80,8 @@ const makeRandomReply = (messages) => makeReply(getRandomReply(messages));
 
 
 // 	the bot has joined a channel
-controller.on('bot_channel_join', function(bot, message) {
-  console.log('bot_channel_join');
+controller.on('channel_joined', function(bot, message) {
+  console.log('channel_joined');
   bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
 });
 
