@@ -17,7 +17,7 @@ if (token) {
   });
 }
 
-const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
+const getRandomArbitrary = (min, max) => Math.round(Math.random() * (max - min) + min);
 
 const getRandomReply = (messages) => messages[getRandomArbitrary(0, messages.length)];
 
