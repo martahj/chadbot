@@ -119,7 +119,9 @@ const directMentionResponses = [
 
 // the bot was addressed directly in a channel
 controller.on('direct_mention', function(bot, message) {
+  console.log('mention', message);
   const { text, user } = message;
+  console.log('user', user);
   if (getLastCharacter(text) === '?') {
     return bot.reply(message, getRandomReply(questionResponses));
   }
