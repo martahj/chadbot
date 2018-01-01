@@ -81,6 +81,7 @@ const makeRandomReply = (messages) => makeReply(getRandomReply(messages));
 
 // 	the bot has joined a channel
 controller.on('bot_channel_join', function(bot, message) {
+  console.log('bot_channel_join');
   bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
 });
 
@@ -96,6 +97,7 @@ const greetings = [
 
 // a user has joined the channel
 controller.on('user_channel_join', function(bot, message) {
+  console.log('user channel join');
   const { user } = message;
   const reply = `Greetings, ${withUser(user)}. ${getRandomReply(greetings)}.`;
   bot.reply(message, reply);
@@ -119,9 +121,7 @@ const directMentionResponses = [
 
 // the bot was addressed directly in a channel
 controller.on('direct_mention', function(bot, message) {
-  console.log('mention', message);
   const { text, user } = message;
-  console.log('user', user);
   if (getLastCharacter(text) === '?') {
     return bot.reply(message, getRandomReply(questionResponses));
   }
@@ -166,6 +166,7 @@ const mentionReplies = [
 
 // the bot was mentioned by someone in a message
 controller.on('mention', function(bot, message) {
+  console.log('got mention');
   const { user } = message;
   const reply = getRandomReply(mentionReplies);
 
@@ -202,5 +203,11 @@ controller.hears(['/duplicate/i'], ['ambient'], (bot, message) => {
 });
 
 controller.hears(['/recovery/i'], ['ambient'], (bot, message) => {
+  console.log('recovery/i');
+  return bot.reply(message, `“recovery” is no longer the buzzword`);
+});
+
+controller.hears(['recovery'], ['ambient'], (bot, message) => {
+  console.log('recovery');
   return bot.reply(message, `“recovery” is no longer the buzzword`);
 });
