@@ -25,7 +25,7 @@ const getLastCharacter = string => string[string.length - 1];
 
 const decapitalize = (message) => message[0].toLowerCase() + message.slice(1);
 
-const withUser = user => `<@"${user}">`;
+const withUser = user => `<@${user}>`;
 
 const allMessages = [
   `We know we will win the superbowl next year, but season ticket holders won’t stand for a 0 and 12 record this season.`,
