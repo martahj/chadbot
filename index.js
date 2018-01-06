@@ -130,8 +130,6 @@ const mentionReplies = [
   `We know we will win the superbowl next year, but season ticket holders won’t stand for a 0 and 12 record this season.`,
   `Walking and chewing gum is not something everyone can do, our people can do that`,
   `You need to start thinking of yourselves as Navy Seals.`,
-  `We are good with deadlines here`,
-  `We don’t do variables well.`,
   `We are like the circus`,
   `Salesforce is turning from our junk drawer into our knife drawer.`,
   `In 2008 we were artists, then in the past few years we became massage therapists, we had some skills and training but still an artist touch with candles and aromatherapy, we are moving to a world where we are laser eye surgeons. Things will be on our price and our terms, sign up or not.`,
@@ -142,8 +140,6 @@ const mentionReplies = [
   `In love with the money I ain't never letting go`,
   `Married to the money, introduced her to my stove`,
   `We are agent friendly`,
-  `“recovery” is no longer the buzzword`,
-  `Money is in the bank`,
   `He is slippery enough for us`,
   `We are the Uber of real estate`,
   `It’s not 911, its 311.`,
@@ -161,8 +157,19 @@ const mentionReplies = [
   `We have the cure for house cancer`,
 ];
 
-// the bot was mentioned by someone in a message
-controller.on('mention', function(bot, message) {
+// // the bot was mentioned by someone in a message
+// controller.on('mention', function(bot, message) {
+//   console.log('got mention');
+//   const { user } = message;
+//   const reply = getRandomReply(mentionReplies);
+//
+//   const mentionUser = Math.random() < 2;
+//   if (mentionUser) return bot.reply(message, `${withUser(user)}, ${decapitalize(reply)}`);
+//   return bot.reply(message, makeReply(reply));
+// });
+
+
+controller.hears(['chad', 'chairman', 'boss', 'success', 'inspiration', 'real'], (bot, message) => {
   console.log('got mention');
   const { user } = message;
   const reply = getRandomReply(mentionReplies);
@@ -171,6 +178,16 @@ controller.on('mention', function(bot, message) {
   if (mentionUser) return bot.reply(message, `${withUser(user)}, ${decapitalize(reply)}`);
   return bot.reply(message, makeReply(reply));
 });
+
+constroller.hears(['variable'], (bot, message) => {
+  const shouldReply = Math.random() < .5;
+  if (shouldReply) return bot.reply(message, `We don’t do variables well.`);
+})
+
+constroller.hears(['deadline'], (bot, message) => {
+  const shouldReply = Math.random() < .5;
+  if (shouldReply) return bot.reply(message, `We are good with deadlines here`);
+})
 
 controller.hears(["lol", "lmao", "haha"], ["ambient"], function(bot, message) {
   const shouldReply = Math.random() < .4;
