@@ -85,7 +85,7 @@ controller.on('channel_join', function(bot, message) {
   bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
 });
 
-controller.on('bot_group_join', function(bot, message) {
+controller.on(['bot_group_join', 'bot_channel_join'], function(bot, message) {
   console.log('bot_channel_join');
   bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
 });
