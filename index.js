@@ -169,7 +169,7 @@ const mentionReplies = [
 // });
 
 
-controller.hears(['chad', 'chairman', 'boss', 'success', 'inspiration', 'real'], (bot, message) => {
+controller.hears(['chad', 'chairman', 'boss', 'success', 'inspiration', 'real'], ['ambient'], (bot, message) => {
   console.log('got mention');
   const { user } = message;
   const reply = getRandomReply(mentionReplies);
@@ -179,12 +179,12 @@ controller.hears(['chad', 'chairman', 'boss', 'success', 'inspiration', 'real'],
   return bot.reply(message, makeReply(reply));
 });
 
-controller.hears(['variable'], (bot, message) => {
+controller.hears(['variable'], ['ambient'], (bot, message) => {
   const shouldReply = Math.random() < .5;
   if (shouldReply) return bot.reply(message, `We don’t do variables well.`);
 })
 
-controller.hears(['deadline'], (bot, message) => {
+controller.hears(['deadline'], ['ambient'] (bot, message) => {
   const shouldReply = Math.random() < .5;
   if (shouldReply) return bot.reply(message, `We are good with deadlines here`);
 })
