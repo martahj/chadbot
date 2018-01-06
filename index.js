@@ -197,22 +197,22 @@ const moneyReplies = [
   `Money is in the bank`,
 ];
 
-controller.hears(["/money/i", "/rich/i", "/dolla/i", "/dollar/i", "/dollars/i"], ['ambient'], (bot, message) => {
+controller.hears(["/money/i", "/rich/i", "/dolla/i", "/dollar/i", "/dollars/i", "cash/i"], ['ambient'], (bot, message) => {
   const shouldReply = Math.random() < .7;
   if (!shouldReply) return;
   bot.reply(message, getRandomReply(moneyReplies));
 });
 
-controller.hears(['/duplicate/i'], ['ambient'], (bot, message) => {
+controller.hears([new RegExp('/duplicate/i')], ['ambient'], (bot, message) => {
   return bot.reply(message, `Duplicate is a dirty word`);
 });
 
-controller.hears(['/recovery/i'], ['ambient'], (bot, message) => {
+controller.hears([new RegExp('/recovery/i')], ['ambient'], (bot, message) => {
   console.log('recovery/i');
   return bot.reply(message, `“recovery” is no longer the buzzword`);
 });
-
-controller.hears(['recovery'], ['ambient'], (bot, message) => {
-  console.log('recovery');
-  return bot.reply(message, `“recovery” is no longer the buzzword`);
-});
+//
+// controller.hears(['recovery'], ['ambient'], (bot, message) => {
+//   console.log('recovery');
+//   return bot.reply(message, `“recovery” is no longer the buzzword`);
+// });
