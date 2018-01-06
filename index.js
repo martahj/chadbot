@@ -85,7 +85,7 @@ controller.on('channel_join', function(bot, message) {
   bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
 });
 
-controller.on('bot_channel_join', function(bot, message) {
+controller.on('bot_group_join', function(bot, message) {
   console.log('bot_channel_join');
   bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
 });
@@ -179,7 +179,6 @@ controller.on('mention', function(bot, message) {
   if (mentionUser) return bot.reply(message, `${withUser(user)}, ${decapitalize(reply)}`);
   return bot.reply(message, makeReply(reply));
 });
-
 
 controller.hears(["/lol/i", "/lmao/i", "/haha/i"], ["ambient"], function(bot, message) {
   const shouldReply = Math.random() < .4;
