@@ -78,15 +78,7 @@ const makeReply = (reply) => {
 
 const makeRandomReply = (messages) => makeReply(getRandomReply(messages));
 
-
-// 	the bot has joined a channel
-controller.on('channel_join', function(bot, message) {
-  console.log('channel_join');
-  bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
-});
-
 controller.on(['bot_group_join', 'bot_channel_join'], function(bot, message) {
-  console.log('bot_channel_join');
   bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
 });
 
@@ -101,7 +93,7 @@ const greetings = [
 ];
 
 // a user has joined the channel
-controller.on('user_channel_join', function(bot, message) {
+controller.on(['user_channel_join', 'user_group_join'], function(bot, message) {
   console.log('user channel join');
   const { user } = message;
   const reply = `Greetings, ${withUser(user)}. ${getRandomReply(greetings)}.`;
@@ -180,12 +172,12 @@ controller.on('mention', function(bot, message) {
   return bot.reply(message, makeReply(reply));
 });
 
-controller.hears(["/lol/i", "/lmao/i", "/haha/i"], ["ambient"], function(bot, message) {
+controller.hears(["lol", "lmao", "haha"], ["ambient"], function(bot, message) {
   const shouldReply = Math.random() < .4;
   if (shouldReply) return bot.reply(message, `Let me be specific, that is hilarious`);
 });
 
-controller.hears(["/astronaut/i"], ['ambient'], (bot, message) => {
+controller.hears(['astronaut'], ['ambient'], (bot, message) => {
   const shouldReply = Math.random() < .6;
   bot.reply(message, 'Ask yourself: “How can I be more of an astronaut?”');
 });
@@ -196,22 +188,16 @@ const moneyReplies = [
   `Money is in the bank`,
 ];
 
-controller.hears(["/money/i", "/rich/i", "/dolla/i", "/dollar/i", "/dollars/i", "cash/i"], ['ambient'], (bot, message) => {
+controller.hears(['money', 'rich', 'dolla', 'dollar', 'cash'], ['ambient'], (bot, message) => {
   const shouldReply = Math.random() < .7;
   if (!shouldReply) return;
   bot.reply(message, getRandomReply(moneyReplies));
 });
 
-controller.hears([new RegExp('/duplicate/i')], ['ambient'], (bot, message) => {
+controller.hears(['duplicate'], ['ambient'], (bot, message) => {
   return bot.reply(message, `Duplicate is a dirty word`);
 });
 
 controller.hears(['recovery'], ['ambient'], (bot, message) => {
-  console.log('recovery/i');
   return bot.reply(message, `“recovery” is no longer the buzzword`);
 });
-//
-// controller.hears(['recovery'], ['ambient'], (bot, message) => {
-//   console.log('recovery');
-//   return bot.reply(message, `“recovery” is no longer the buzzword`);
-// });
