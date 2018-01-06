@@ -179,12 +179,12 @@ controller.hears(['chad', 'chairman', 'boss', 'success', 'inspiration', 'real'],
   return bot.reply(message, makeReply(reply));
 });
 
-constroller.hears(['variable'], (bot, message) => {
+controller.hears(['variable'], (bot, message) => {
   const shouldReply = Math.random() < .5;
   if (shouldReply) return bot.reply(message, `We don’t do variables well.`);
 })
 
-constroller.hears(['deadline'], (bot, message) => {
+controller.hears(['deadline'], (bot, message) => {
   const shouldReply = Math.random() < .5;
   if (shouldReply) return bot.reply(message, `We are good with deadlines here`);
 })
