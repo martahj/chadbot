@@ -80,8 +80,8 @@ const makeRandomReply = (messages) => makeReply(getRandomReply(messages));
 
 
 // 	the bot has joined a channel
-controller.on('channel_joined', function(bot, message) {
-  console.log('channel_joined');
+controller.on('channel_join', function(bot, message) {
+  console.log('channel_join');
   bot.reply(message,'Greetings. We’re the Navy Seals of Real Estate');
 });
 
@@ -207,7 +207,7 @@ controller.hears([new RegExp('/duplicate/i')], ['ambient'], (bot, message) => {
   return bot.reply(message, `Duplicate is a dirty word`);
 });
 
-controller.hears([new RegExp('/recovery/i')], ['ambient'], (bot, message) => {
+controller.hears(['recovery'], ['ambient'], (bot, message) => {
   console.log('recovery/i');
   return bot.reply(message, `“recovery” is no longer the buzzword`);
 });
