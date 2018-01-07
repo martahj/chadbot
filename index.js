@@ -170,12 +170,7 @@ const mentionReplies = [
 
 
 controller.hears(['chad', 'chairman', 'boss', 'success', 'inspiration', 'real'], ['ambient'], (bot, message) => {
-  console.log('got mention');
-  const { user } = message;
   const reply = getRandomReply(mentionReplies);
-
-  const mentionUser = Math.random() < 2;
-  if (mentionUser) return bot.reply(message, `${withUser(user)}, ${decapitalize(reply)}`);
   return bot.reply(message, makeReply(reply));
 });
 
