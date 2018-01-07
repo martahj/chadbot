@@ -184,7 +184,7 @@ controller.hears(['variable'], ['ambient'], (bot, message) => {
   if (shouldReply) return bot.reply(message, `We don’t do variables well.`);
 })
 
-controller.hears(['deadline'], ['ambient'] (bot, message) => {
+controller.hears(['deadline'], ['ambient'], (bot, message) => {
   const shouldReply = Math.random() < .5;
   if (shouldReply) return bot.reply(message, `We are good with deadlines here`);
 })
