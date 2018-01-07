@@ -137,8 +137,6 @@ const mentionReplies = [
   `We are becoming laser eye surgeons`,
   `We slaughter the cow for the steak and don’t harvest anything else`,
   `We need to try before we buy`,
-  `In love with the money I ain't never letting go`,
-  `Married to the money, introduced her to my stove`,
   `We are agent friendly`,
   `He is slippery enough for us`,
   `We are the Uber of real estate`,
@@ -156,18 +154,6 @@ const mentionReplies = [
   `Pigs get fat, hogs get slaughtered`,
   `We have the cure for house cancer`,
 ];
-
-// // the bot was mentioned by someone in a message
-// controller.on('mention', function(bot, message) {
-//   console.log('got mention');
-//   const { user } = message;
-//   const reply = getRandomReply(mentionReplies);
-//
-//   const mentionUser = Math.random() < 2;
-//   if (mentionUser) return bot.reply(message, `${withUser(user)}, ${decapitalize(reply)}`);
-//   return bot.reply(message, makeReply(reply));
-// });
-
 
 controller.hears(['chad', 'chairman', 'boss', 'success', 'inspiration', 'real'], ['ambient'], (bot, message) => {
   const reply = getRandomReply(mentionReplies);
